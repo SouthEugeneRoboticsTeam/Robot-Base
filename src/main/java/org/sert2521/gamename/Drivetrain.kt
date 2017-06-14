@@ -3,6 +3,7 @@ package org.sert2521.gamename
 import com.ctre.CANTalon
 import com.ctre.CANTalon.TalonControlMode
 import edu.wpi.first.wpilibj.RobotDrive
+import edu.wpi.first.wpilibj.command.Command
 import edu.wpi.first.wpilibj.command.Subsystem
 
 
@@ -38,6 +39,14 @@ object Drivetrain : Subsystem() {
     }
 
     override fun initDefaultCommand() {
-        defaultCommand = TeleopDrivetrain()
+        defaultCommand = object : Command() {
+            init {
+                requires(this@Drivetrain)
+            }
+
+            override fun execute() = teleoperatedDrive()
+
+            override fun isFinished() = false
+        }
     }
 }
