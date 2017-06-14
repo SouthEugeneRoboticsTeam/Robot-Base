@@ -1,11 +1,11 @@
 # Robot Base
 
-SERT's base code to use Gradle and Kotlin.
+SERT's base robot code for Gradle and Kotlin.
 
-## Things to update every year
+## Things to Update Every Year
 
-1. Update [package name](https://github.com/SouthEugeneRoboticsTeam/Robot-Base/blob/master/build.gradle#L41) and actual package
-1. Update [GradleRIO dependency](https://github.com/SouthEugeneRoboticsTeam/Robot-Base/blob/master/build.gradle#L13)
+1. [Package name](https://github.com/SouthEugeneRoboticsTeam/Robot-Base/blob/master/build.gradle#L41) and actual package
+1. [GradleRIO dependency](https://github.com/SouthEugeneRoboticsTeam/Robot-Base/blob/master/build.gradle#L13)
 
 ## Building
 
@@ -17,7 +17,7 @@ The last example is the main issue because it prevents building robot code unles
 internet connection (which the robot doesn't). To get around this issue, you have to push code to
 the robot with the `--offline` flag.
 
-### TL;DR:
+## TL;DR
 
-1. To get everything downloaded and setup, **run `./gradlew build` once while online**
-2. When pushing code to the robot, use `./gradlew build deploy `**`--offline`**
+1. To get everything downloaded and setup, run `./gradlew build` once **while online**
+1. When pushing code to the robot, use `./gradlew build deploy --offline`
