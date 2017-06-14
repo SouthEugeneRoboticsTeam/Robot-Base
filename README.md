@@ -17,7 +17,7 @@ The last example is the main issue because it prevents building robot code unles
 internet connection (which the robot doesn't). To get around this issue, you have to push code to
 the robot with the `--offline` flag.
 
-## TL;DR
+### TL;DR
 
 1. To get everything downloaded and setup, run `./gradlew build` once **while online**
 1. When pushing code to the robot, use `./gradlew build deploy --offline`
