@@ -6,6 +6,10 @@ import edu.wpi.first.wpilibj.RobotDrive
 import edu.wpi.first.wpilibj.command.Command
 import edu.wpi.first.wpilibj.command.Subsystem
 
+/**
+ * This is the Drivetrain subsystem, which is in charge of controlling the speeds of the individual
+ * talons and converting joystick input to movement speeds.
+ */
 
 object Drivetrain : Subsystem() {
     private val frontLeft = CANTalon(FRONT_LEFT_MOTOR)
