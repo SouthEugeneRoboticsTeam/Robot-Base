@@ -1,4 +1,4 @@
 .gradle
-.idea
+.idea/**
 !.idea/codeStyleSettings.xml
 build
