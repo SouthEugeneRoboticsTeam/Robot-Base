@@ -7,13 +7,15 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow
 /**
  * This is the main robot class which calls various methods depending on the current game stage.
  */
-
-var DEBUG = false
-
 class Robot : IterativeRobot() {
     override fun robotInit() {
+        info("Robot starting...")
         Drivetrain
     }
+
+    override fun autonomousInit() = info("Autonomous starting...")
+
+    override fun teleopInit() = info("Teleop starting...")
 
     override fun autonomousPeriodic() = Scheduler.getInstance().run()
 
