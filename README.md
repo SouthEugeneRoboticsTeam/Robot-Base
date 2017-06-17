@@ -20,4 +20,4 @@ the robot with the `--offline` flag.
 ### TL;DR
 
 1. To get everything downloaded and setup, run `./gradlew build` once **while online**
-1. When pushing code to the robot, use `./gradlew build deploy --offline`
+2. When pushing code to the robot, use `./gradlew deploy --offline`
