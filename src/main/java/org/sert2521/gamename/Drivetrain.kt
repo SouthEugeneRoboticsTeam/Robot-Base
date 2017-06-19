@@ -1,12 +1,7 @@
-package org.sert2521.gamename.drivetrain
+package org.sert2521.gamename
 
 import edu.wpi.first.wpilibj.command.Subsystem
-import org.sert2521.gamename.FRONT_LEFT_MOTOR
-import org.sert2521.gamename.FRONT_RIGHT_MOTOR
-import org.sert2521.gamename.OI
-import org.sert2521.gamename.REAR_LEFT_MOTOR
-import org.sert2521.gamename.REAR_RIGHT_MOTOR
-import org.sert2521.gamename.drivetrain.commands.ArcadeDrive
+import org.sert2521.gamename.driving.ArcadeDrive
 import org.strongback.Strongback
 import org.strongback.components.Motor
 import org.strongback.drive.TankDrive
@@ -25,13 +20,8 @@ object Drivetrain : Subsystem() {
     private val left = Motor.compose(frontLeft, rearLeft)
     private val right = Motor.compose(frontRight, rearRight)
 
-    private val drive: TankDrive
+    private val drive = TankDrive(left, right)
 
-    init {
-        drive = TankDrive(left, right)
-    }
-
-    override fun initDefaultCommand() {
-        Strongback.submit(ArcadeDrive(drive, OI.left.pitch, OI.left.roll))
-    }
+    override fun initDefaultCommand() =
+            Strongback.submit(ArcadeDrive(drive, OI.left.pitch, OI.left.roll))
 }

@@ -23,26 +23,24 @@ apply plugin: "net.saliman.cobertura"
 apply plugin: "com.github.kt3k.coveralls"
 deploy.dependsOn "build"
 
-cobertura {
-    coverageFormats = ["html", "xml"]
-    coverageExcludes = [".*org.sert2521.gamename.Robot", ".*org.sert2521.gamename.OI"]
-}
-
 repositories {
     jcenter()
     mavenCentral()
     maven { url "http://dl.bintray.com/kotlin/kotlin-eap-1.1" }
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
-    compile fileTree(dir: "libs", include: "**/*.jar")
+
+    compile 'com.github.strongback:strongback-java:v2017.2.0'
     compile wpilib()
     compile talonSrx()
 
     testCompile "org.easytesting:fest-assert:1.4"
     testCompile "junit:junit:4.12"
-
     testRuntime "org.slf4j:slf4j-api:1.7.10"
 }
 
@@ -70,4 +68,9 @@ test {
     testLogging {
         showStandardStreams = true
     }
+}
+
+cobertura {
+    coverageFormats = ["html", "xml"]
+    coverageExcludes = [".*org.sert2521.gamename.Robot", ".*org.sert2521.gamename.OI"]
 }

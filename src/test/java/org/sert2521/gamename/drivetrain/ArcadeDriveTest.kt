@@ -4,16 +4,13 @@ import org.junit.Before
 import org.junit.Test
 import org.sert2521.gamename.ContinuousRangeTester
 import org.sert2521.gamename.assertMotorSpeeds
-import org.sert2521.gamename.drivetrain.commands.ArcadeDrive
+import org.sert2521.gamename.driving.ArcadeDrive
 import org.strongback.command.CommandTester
 import org.strongback.components.Motor
 import org.strongback.drive.TankDrive
 import org.strongback.mock.Mock
 
-/**
- * Created by AMD on 6/17/17.
- */
-class ArcadeDriveTest() {
+class ArcadeDriveTest {
     private lateinit var frontLeft: Motor
     private lateinit var frontRight: Motor
     private lateinit var rearLeft: Motor

@@ -3,7 +3,6 @@ package org.sert2521.gamename
 import edu.wpi.first.wpilibj.IterativeRobot
 import edu.wpi.first.wpilibj.command.Scheduler
 import edu.wpi.first.wpilibj.livewindow.LiveWindow
-import org.sert2521.gamename.drivetrain.Drivetrain
 import org.strongback.Strongback
 
 /**

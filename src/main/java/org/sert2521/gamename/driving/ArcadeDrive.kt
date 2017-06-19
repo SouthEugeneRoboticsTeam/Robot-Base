@@ -1,4 +1,4 @@
-package org.sert2521.gamename.drivetrain.commands
+package org.sert2521.gamename.driving
 
 import org.strongback.command.Command
 import org.strongback.components.ui.ContinuousRange
@@ -7,10 +7,12 @@ import org.strongback.drive.TankDrive
 /**
  * This command allows for arcade drive of the robot.
  */
-class TankDrive(private val drive: TankDrive, private val left: ContinuousRange, private val right: ContinuousRange) : Command() {
+class ArcadeDrive(private val drive: TankDrive,
+                  private val pitch: ContinuousRange,
+                  private val roll: ContinuousRange) : Command() {
     override fun execute(): Boolean {
         // Input values are squared by default, making driving smoother
-        drive.tank(left.read(), right.read())
+        drive.arcade(pitch.read(), roll.read())
         return false
     }
 

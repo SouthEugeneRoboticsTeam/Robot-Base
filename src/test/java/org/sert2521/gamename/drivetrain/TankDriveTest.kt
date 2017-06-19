@@ -1,18 +1,15 @@
-package org.sert2521.gamename.Drivetrain
+package org.sert2521.gamename.drivetrain
 
 import org.junit.Before
 import org.junit.Test
 import org.sert2521.gamename.ContinuousRangeTester
 import org.sert2521.gamename.assertMotorSpeeds
-import org.sert2521.gamename.drivetrain.commands.TankDrive
+import org.sert2521.gamename.driving.TankDrive
 import org.strongback.command.CommandTester
 import org.strongback.components.Motor
 import org.strongback.mock.Mock
 
-/**
- * Created by AMD on 6/17/17.
- */
-class TankDriveTest() {
+class TankDriveTest {
     private lateinit var frontLeft: Motor
     private lateinit var frontRight: Motor
     private lateinit var rearLeft: Motor
