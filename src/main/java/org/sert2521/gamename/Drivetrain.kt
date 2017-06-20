@@ -12,10 +12,10 @@ import org.strongback.hardware.Hardware
  * talons and converting joystick input to movement speeds.
  */
 object Drivetrain : Subsystem() {
-    private val frontLeft = Hardware.Motors.talon(FRONT_LEFT_MOTOR)
-    private val frontRight = Hardware.Motors.talon(FRONT_RIGHT_MOTOR)
-    private val rearLeft = Hardware.Motors.talon(REAR_LEFT_MOTOR)
-    private val rearRight = Hardware.Motors.talon(REAR_RIGHT_MOTOR)
+    private val frontLeft = Hardware.Motors.talonSRX(FRONT_LEFT_MOTOR)
+    private val frontRight = Hardware.Motors.talonSRX(FRONT_RIGHT_MOTOR)
+    private val rearLeft = Hardware.Motors.talonSRX(REAR_LEFT_MOTOR)
+    private val rearRight = Hardware.Motors.talonSRX(REAR_RIGHT_MOTOR)
 
     private val left = Motor.compose(frontLeft, rearLeft)
     private val right = Motor.compose(frontRight, rearRight)

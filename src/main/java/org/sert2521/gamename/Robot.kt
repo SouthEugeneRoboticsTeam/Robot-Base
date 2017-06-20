@@ -14,13 +14,21 @@ class Robot : IterativeRobot() {
         Drivetrain
     }
 
-    override fun autonomousInit() = Strongback.logger().info("Autonomous starting...")
-
-    override fun teleopInit() = Strongback.logger().info("Teleop starting...")
+    override fun autonomousInit() {
+        Strongback.logger().info("Autonomous starting...")
+        Strongback.start()
+    }
 
     override fun autonomousPeriodic() = Scheduler.getInstance().run()
+
+    override fun teleopInit() {
+        Strongback.logger().info("Teleop starting...")
+        Strongback.start()
+    }
 
     override fun teleopPeriodic() = Scheduler.getInstance().run()
 
     override fun testPeriodic() = LiveWindow.run()
+
+    override fun disabledInit() = Strongback.stop()
 }
