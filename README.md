@@ -1,5 +1,8 @@
 # Robot Base
 
+[![Travis][travis-img]][travis-url]
+[![Coveralls][coveralls-img]][coveralls-url]
+
 SERT's base robot code for Gradle and Kotlin.
 
 ## Things to Update Every Year
@@ -21,3 +24,8 @@ the robot with the `--offline` flag.
 
 1. To get everything downloaded and setup, run `./gradlew build` once **while online**
 2. When pushing code to the robot, use `./gradlew deploy --offline`
+
+[travis-img]: https://img.shields.io/travis/SouthEugeneRoboticsTeam/Robot-Base.svg?style=flat-square
+[travis-url]: https://travis-ci.org/SouthEugeneRoboticsTeam/Robot-Base
+[coveralls-img]: https://img.shields.io/coveralls/SouthEugeneRoboticsTeam/Robot-Base.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/github/SouthEugeneRoboticsTeam/Robot-Base
