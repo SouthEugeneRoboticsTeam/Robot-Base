@@ -5,6 +5,18 @@
 
 SERT's base robot code for Gradle and Kotlin.
 
+## Yearly Repository Setup
+
+```bash
+$ git clone --depth=1 https://github.com/SouthEugeneRoboticsTeam/Robot-Base.git GameName-Year
+$ rm -rf !$/.git
+$ git init
+$ git remote add origin https://github.com/SouthEugeneRoboticsTeam/GameName-Year.git
+$ git add .
+$ git commit -m "Initial commit"
+$ git push origin master
+```
+
 ## Things to Update Every Year
 
 1. [Package name](https://github.com/SouthEugeneRoboticsTeam/Robot-Base/blob/master/build.gradle#L41) and actual package
