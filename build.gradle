@@ -21,11 +21,16 @@ apply plugin: "jaci.openrio.gradle.GradleRIO"
 apply plugin: "net.saliman.cobertura"
 apply plugin: "com.github.kt3k.coveralls"
 deploy.dependsOn "build"
+check.dependsOn "ktlint"
 
 repositories {
     jcenter()
     mavenCentral()
     maven { url 'https://jitpack.io' }
+}
+
+configurations {
+    ktlint
 }
 
 dependencies {
@@ -36,6 +41,8 @@ dependencies {
     compile 'com.github.strongback:strongback-java:v2017.2.0'
     compile wpilib()
     compile talonSrx()
+
+    ktlint 'com.github.shyiko:ktlint:0.9.0'
 
     testCompile "org.easytesting:fest-assert:1.4"
     testCompile "junit:junit:4.12"
@@ -71,4 +78,10 @@ test {
 cobertura {
     coverageFormats = ["html", "xml"]
     coverageExcludes = [".*org.sert2521.gamename.Robot", ".*org.sert2521.gamename.OI"]
+}
+
+task ktlint(type: JavaExec) {
+    main = "com.github.shyiko.ktlint.Main"
+    classpath = configurations.ktlint
+    args "src/**/*.kt"
 }
