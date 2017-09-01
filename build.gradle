@@ -9,7 +9,7 @@ buildscript {
 
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "gradle.plugin.jaci.openrio.gradle:GradleRIO:2017.1.5"
+        classpath "gradle.plugin.jaci.openrio.gradle:GradleRIO:2017.2.3"
         classpath "net.saliman:gradle-cobertura-plugin:2.4.0"
         classpath "org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.8.1"
     }
@@ -31,6 +31,13 @@ repositories {
 
 configurations {
     ktlint
+}
+
+wpi {
+    wpilibVersion = "+"
+    ntcoreVersion = "+"
+    opencvVersion = "+"
+    cscoreVersion = "+"
 }
 
 dependencies {
