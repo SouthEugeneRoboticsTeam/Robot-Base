@@ -5,7 +5,7 @@ import org.strongback.components.ui.ContinuousRange
 import org.strongback.drive.TankDrive
 
 /**
- * This command allows for arcade drive of the robot.
+ * This command allows for tank drive of the robot.
  */
 class TankDrive(private val drive: TankDrive,
                 private val left: ContinuousRange,
