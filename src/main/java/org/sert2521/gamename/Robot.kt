@@ -1,8 +1,8 @@
 package org.sert2521.gamename
 
 import edu.wpi.first.wpilibj.IterativeRobot
-import edu.wpi.first.wpilibj.command.Scheduler
 import edu.wpi.first.wpilibj.livewindow.LiveWindow
+import org.sert2521.gamename.util.initDrivetrain
 import org.strongback.Strongback
 
 /**
@@ -11,7 +11,7 @@ import org.strongback.Strongback
 class Robot : IterativeRobot() {
     override fun robotInit() {
         Strongback.logger().info("Robot starting...")
-        Drivetrain
+        initDrivetrain()
     }
 
     override fun autonomousInit() {
@@ -19,16 +19,12 @@ class Robot : IterativeRobot() {
         Strongback.start()
     }
 
-    override fun autonomousPeriodic() = Scheduler.getInstance().run()
-
     override fun teleopInit() {
         Strongback.logger().info("Teleop starting...")
         Strongback.start()
     }
 
-    override fun teleopPeriodic() = Scheduler.getInstance().run()
-
     override fun testPeriodic() = LiveWindow.run()
 
-    override fun disabledInit() = Strongback.stop()
+    override fun disabledInit() = Strongback.disable()
 }

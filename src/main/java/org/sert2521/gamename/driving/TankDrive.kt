@@ -7,11 +7,12 @@ import org.strongback.drive.TankDrive
 /**
  * This command allows for tank drive of the robot.
  */
-class TankDrive(private val drive: TankDrive,
-                private val left: ContinuousRange,
-                private val right: ContinuousRange) : Command() {
+class TankDrive(
+        private val drive: TankDrive,
+        private val left: ContinuousRange,
+        private val right: ContinuousRange
+) : Command(drive) {
     override fun execute(): Boolean {
-        // Input values are squared by default, making driving smoother
         drive.tank(left.read(), right.read())
         return false
     }

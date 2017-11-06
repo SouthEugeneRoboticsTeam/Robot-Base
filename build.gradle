@@ -1,9 +1,9 @@
 buildscript {
-    ext.kotlin_version = "1.1.51"
+    ext.kotlin_version = "1.2.0-rc-39"
 
     repositories {
         jcenter()
-        mavenCentral()
+        maven { url 'http://dl.bintray.com/kotlin/kotlin-eap-1.2' }
         maven { url "https://plugins.gradle.org/m2/" }
     }
 
@@ -25,8 +25,8 @@ check.dependsOn "ktlint"
 
 repositories {
     jcenter()
-    mavenCentral()
     maven { url 'https://jitpack.io' }
+    maven { url 'http://dl.bintray.com/kotlin/kotlin-eap-1.2' }
     maven { url 'http://first.wpi.edu/FRC/roborio/maven/development' }
     maven { url 'http://dev.imjac.in/maven' }
 }
@@ -36,9 +36,10 @@ configurations {
 }
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
-    compile "com.github.SUPERCILEX:strongback-java:0c529616f9"
+    compile "com.github.SUPERCILEX:strongback-java:d668d25a53"
+
     compile "edu.wpi.first.wpilibj:wpilibj-java:2017.3.1-20170819010033-68-ge1195e8"
     compile "edu.wpi.first.wpilibj:athena:2017.3.1"
     compile "edu.wpi.first.wpilibj:wpilibj-jniShared:2017.3.1-20171011234223-117-gf0cc623"
