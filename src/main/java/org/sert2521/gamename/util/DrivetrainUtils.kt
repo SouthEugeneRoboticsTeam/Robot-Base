@@ -20,6 +20,7 @@ val drive = Drive(
 )
 
 fun initDrivetrain() {
+    Strongback.submit(ArcadeDrive(drive, leftJoystick.pitch, leftJoystick.roll))
     Strongback.switchReactor().apply {
         onTriggeredSubmit(leftJoystick.thumb, Supplier {
             ArcadeDrive(drive, leftJoystick.pitch, leftJoystick.roll)
