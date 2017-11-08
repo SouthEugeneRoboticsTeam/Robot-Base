@@ -17,7 +17,5 @@ class TankDrive(
         return false
     }
 
-    override fun interrupted() = end()
-
     override fun end() = drive.stop()
 }

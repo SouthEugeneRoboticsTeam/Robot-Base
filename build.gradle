@@ -38,7 +38,7 @@ configurations {
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
-    compile "com.github.SUPERCILEX:strongback-java:d668d25a53"
+    compile "com.github.SUPERCILEX:strongback-java:f05322e2dd"
 
     compile "edu.wpi.first.wpilibj:wpilibj-java:2017.3.1-20170819010033-68-ge1195e8"
     compile "edu.wpi.first.wpilibj:athena:2017.3.1"
