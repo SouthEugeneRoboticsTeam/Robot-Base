@@ -1,7 +1,11 @@
-package org.sert2521.gamename.util
+package org.sert2521.gamename.driving
 
-import org.sert2521.gamename.driving.ArcadeDrive
-import org.sert2521.gamename.driving.TankDrive
+import org.sert2521.gamename.util.FRONT_LEFT_MOTOR
+import org.sert2521.gamename.util.FRONT_RIGHT_MOTOR
+import org.sert2521.gamename.util.REAR_LEFT_MOTOR
+import org.sert2521.gamename.util.REAR_RIGHT_MOTOR
+import org.sert2521.gamename.util.leftJoystick
+import org.sert2521.gamename.util.rightJoystick
 import org.strongback.Strongback
 import org.strongback.components.Motor
 import org.strongback.hardware.Hardware
