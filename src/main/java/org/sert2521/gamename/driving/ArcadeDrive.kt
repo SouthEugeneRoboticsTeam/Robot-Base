@@ -1,6 +1,5 @@
 package org.sert2521.gamename.driving
 
-import edu.wpi.first.wpilibj.Preferences
 import org.strongback.command.Command
 import org.strongback.components.ui.ContinuousRange
 import org.strongback.drive.TankDrive
@@ -14,8 +13,7 @@ class ArcadeDrive(
         private val roll: ContinuousRange
 ) : Command(drive) {
     override fun execute(): Boolean {
-        val scaledSpeed = Preferences.getInstance().getDouble("scaled_speed", 1.0)
-        drive.arcade(pitch.read() * scaledSpeed, roll.read() * scaledSpeed)
+        drive.arcade(pitch.read(), roll.read())
         return false
     }
 
