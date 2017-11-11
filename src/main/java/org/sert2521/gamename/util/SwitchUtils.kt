@@ -1,6 +1,5 @@
 package org.sert2521.gamename.util
 
-import org.strongback.Strongback
 import org.strongback.SwitchReactor
 import org.strongback.command.Command
 import org.strongback.command.Requirable
@@ -22,9 +21,7 @@ fun SwitchReactor.whileTriggeredSubmit(switch: Switch, supplier: Supplier<Comman
         )
     })
     onUntriggeredSubmit(switch, Supplier {
-        Command.create(Runnable {
-            Strongback.submit(Command.cancel(cancelRequireable))
-        })
+        Command.cancel(cancelRequireable)
     })
 }
 
