@@ -9,17 +9,8 @@ val leftJoystick: FlightStick = Hardware.HumanInterfaceDevices.logitechAttack3D(
 val rightJoystick: FlightStick = Hardware.HumanInterfaceDevices.logitechAttack3D(RIGHT_STICK_PORT)
 
 val FlightStick.scaledThrottle
-    get() = ContinuousRange {
-        // Scale this instead of dividing to avoid NaN exceptions
-        (throttle.read() + 1) * .5
-    }
-val FlightStick.scaledPitch
-    get() = ContinuousRange {
-        val scaledSpeed = Preferences.getInstance().getDouble("scaled_speed", 1.0)
-        pitch.read() + scaledSpeed
-    }
-val FlightStick.scaledRoll
-    get() = ContinuousRange {
-        val scaledSpeed = Preferences.getInstance().getDouble("scaled_speed", 1.0)
-        roll.read() + scaledSpeed
-    }
+    get() = throttle.map { (it + 1) * .5 }
+val FlightStick.scaledPitch: ContinuousRange
+    get() = pitch.scale(Preferences.getInstance().getDouble("scaled_speed", 1.0))
+val FlightStick.scaledRoll: ContinuousRange
+    get() = roll.scale(Preferences.getInstance().getDouble("scaled_speed", 1.0))
