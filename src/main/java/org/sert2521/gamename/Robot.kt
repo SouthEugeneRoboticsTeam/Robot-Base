@@ -11,20 +11,25 @@ import org.strongback.Strongback
 class Robot : IterativeRobot() {
     override fun robotInit() {
         Strongback.logger().info("Robot starting...")
-        initDrivetrain()
+        init()
     }
 
     override fun autonomousInit() {
         Strongback.logger().info("Autonomous starting...")
-        Strongback.start()
+        init()
     }
 
     override fun teleopInit() {
         Strongback.logger().info("Teleop starting...")
-        Strongback.start()
+        init()
     }
 
     override fun testPeriodic() = LiveWindow.run()
 
     override fun disabledInit() = Strongback.disable()
+
+    private fun init() {
+        Strongback.start()
+        initDrivetrain()
+    }
 }
