@@ -15,7 +15,7 @@ import org.strongback.hardware.Hardware
 import java.util.function.Supplier
 import org.strongback.drive.TankDrive as Drive
 
-val drive = Drive(
+private val drive = Drive(
         Motor.compose(
                 Hardware.Motors.talonSRX(LEFT_FRONT_MOTOR),
                 Hardware.Motors.talonSRX(LEFT_REAR_MOTOR)
