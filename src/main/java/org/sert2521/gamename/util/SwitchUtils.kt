@@ -8,12 +8,12 @@ import java.util.concurrent.atomic.AtomicBoolean
 import java.util.function.Supplier
 
 fun SwitchReactor.whileTriggeredSubmit(switch: Switch, supplier: Supplier<Command>) {
-    val cancelRequireable = object : Requirable {}
+    val cancelRequirable = object : Requirable {}
 
     onTriggeredSubmit(switch, object : Supplier<Command> {
         private val requirements: Set<Requirable> =
                 supplier.get().requirements.toMutableSet().apply {
-                    add(cancelRequireable)
+                    add(cancelRequirable)
                 }
 
         override fun get(): Command = CommandWrapper(
@@ -22,7 +22,7 @@ fun SwitchReactor.whileTriggeredSubmit(switch: Switch, supplier: Supplier<Comman
         )
     })
     onUntriggeredSubmit(switch, Supplier {
-        Command.cancel(cancelRequireable)
+        Command.cancel(cancelRequirable)
     })
 }
 
@@ -30,15 +30,15 @@ fun SwitchReactor.onTriggeredLifecycleSubmit(
         switch: Switch,
         supplier: Supplier<Command>
 ) = onTriggeredSubmit(switch, object : Supplier<Command> {
-    private val cancelRequireable = object : Requirable {}
+    private val cancelRequirable = object : Requirable {}
     private val isRunning = AtomicBoolean()
     private val requirements: Set<Requirable> =
             supplier.get().requirements.toMutableSet().apply {
-                add(cancelRequireable)
+                add(cancelRequirable)
             }
 
     override fun get(): Command = if (isRunning.getAndSet(!isRunning.get())) {
-        Command.cancel(cancelRequireable)
+        Command.cancel(cancelRequirable)
     } else {
         CommandWrapper(supplier.get(), overrideRequirements = requirements)
     }
