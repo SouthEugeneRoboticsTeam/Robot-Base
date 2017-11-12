@@ -1,9 +1,9 @@
 package org.sert2521.gamename.driving
 
-import org.sert2521.gamename.util.FRONT_LEFT_MOTOR
-import org.sert2521.gamename.util.FRONT_RIGHT_MOTOR
-import org.sert2521.gamename.util.REAR_LEFT_MOTOR
-import org.sert2521.gamename.util.REAR_RIGHT_MOTOR
+import org.sert2521.gamename.util.LEFT_FRONT_MOTOR
+import org.sert2521.gamename.util.LEFT_REAR_MOTOR
+import org.sert2521.gamename.util.RIGHT_FRONT_MOTOR
+import org.sert2521.gamename.util.RIGHT_REAR_MOTOR
 import org.sert2521.gamename.util.leftJoystick
 import org.sert2521.gamename.util.rightJoystick
 import org.sert2521.gamename.util.scaledPitch
@@ -17,12 +17,12 @@ import org.strongback.drive.TankDrive as Drive
 
 val drive = Drive(
         Motor.compose(
-                Hardware.Motors.talonSRX(FRONT_LEFT_MOTOR),
-                Hardware.Motors.talonSRX(FRONT_RIGHT_MOTOR)
+                Hardware.Motors.talonSRX(LEFT_FRONT_MOTOR),
+                Hardware.Motors.talonSRX(LEFT_REAR_MOTOR)
         ),
         Motor.compose(
-                Hardware.Motors.talonSRX(REAR_LEFT_MOTOR),
-                Hardware.Motors.talonSRX(REAR_RIGHT_MOTOR)
+                Hardware.Motors.talonSRX(RIGHT_FRONT_MOTOR),
+                Hardware.Motors.talonSRX(RIGHT_REAR_MOTOR)
         )
 )
 private val defaultDrive: Command
