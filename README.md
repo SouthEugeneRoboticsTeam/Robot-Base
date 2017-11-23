@@ -33,7 +33,7 @@ First, install the [`robot-maker`](https://github.com/SouthEugeneRoboticsTeam/ro
 Then, use the CLI to clone the repository and update packages and Gradle as needed!
 
 ```bash
-$ robot-maker ./PowerUp-2018 PowerUp
+$ robot-maker ./PowerUp-2018
 ```
 
 Boom! You're done!
