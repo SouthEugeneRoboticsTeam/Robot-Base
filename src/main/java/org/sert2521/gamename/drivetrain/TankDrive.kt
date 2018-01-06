@@ -1,4 +1,4 @@
-package org.sert2521.gamename.driving
+package org.sert2521.gamename.drivetrain
 
 import org.strongback.command.Command
 import org.strongback.components.ui.ContinuousRange

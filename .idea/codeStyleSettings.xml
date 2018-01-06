@@ -58,11 +58,6 @@
           <option name="NAME_COUNT_TO_USE_STAR_IMPORT" value="100" />
           <option name="NAME_COUNT_TO_USE_STAR_IMPORT_FOR_MEMBERS" value="100" />
         </JetCodeStyleSettings>
-        <MarkdownNavigatorCodeStyleSettings>
-          <option name="WRAP_ON_TYPING" value="1" />
-          <option name="LIST_ADD_BLANK_LINE_BEFORE" value="true" />
-          <option name="RIGHT_MARGIN" value="-1" />
-        </MarkdownNavigatorCodeStyleSettings>
         <XML>
           <option name="XML_SPACE_INSIDE_EMPTY_TAG" value="true" />
           <option name="XML_LEGACY_SETTINGS_IMPORTED" value="true" />

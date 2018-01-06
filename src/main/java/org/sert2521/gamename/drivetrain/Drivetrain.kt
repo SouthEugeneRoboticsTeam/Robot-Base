@@ -1,4 +1,4 @@
-package org.sert2521.gamename.driving
+package org.sert2521.gamename.drivetrain
 
 import org.sert2521.gamename.util.LEFT_FRONT_MOTOR
 import org.sert2521.gamename.util.LEFT_REAR_MOTOR

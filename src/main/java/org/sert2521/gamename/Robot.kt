@@ -2,7 +2,7 @@ package org.sert2521.gamename
 
 import edu.wpi.first.wpilibj.IterativeRobot
 import edu.wpi.first.wpilibj.livewindow.LiveWindow
-import org.sert2521.gamename.driving.initDrivetrain
+import org.sert2521.gamename.drivetrain.initDrivetrain
 import org.strongback.Strongback
 
 /**
