@@ -36,7 +36,7 @@ object Drivetrain : Subsystem(), RobotLifecycle {
     }
 
     fun arcade() {
-        drive.arcadeDrive(leftJoystick.x, -leftJoystick.y)
+        drive.arcadeDrive(leftJoystick.x, leftJoystick.y)
     }
 
     fun stop() {
