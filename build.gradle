@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlinVersion = "1.2.10"
+    ext.kotlinVersion = "1.2.20"
 
     repositories {
         jcenter()
@@ -21,6 +21,7 @@ tasks.whenTaskAdded { task ->
 check.dependsOn "ktlint"
 
 repositories {
+    google()
     jcenter()
     maven { url 'https://jitpack.io' }
 }
@@ -32,14 +33,14 @@ configurations {
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
 
-    compile "org.sert2521:sertain:2379fd3895"
+    compile "org.sert2521.sertain:core:d9c87c5cef"
 
     compile wpilib()
     compile navx()
     compile ctre()
     compile pathfinder()
 
-    ktlint 'com.github.shyiko:ktlint:0.14.0'
+    ktlint 'com.github.shyiko:ktlint:0.15.0'
 }
 
 compileKotlin {
@@ -67,7 +68,7 @@ deploy {
 // https://github.com/Open-RIO/GradleRIO/tree/\
 // 34b602a105703fa4635398b12e824fc2a70041d9/src/main/groovy/jaci/openrio/gradle/wpi/dependencies
 wpi {
-    wpilibVersion = '2018.1.1'
+    wpilibVersion = '2018.2.1'
     ntcoreVersion = '4.0.0'
     opencvVersion = '3.2.0'
     cscoreVersion = '1.1.0'
