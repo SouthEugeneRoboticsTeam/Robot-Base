@@ -53,7 +53,7 @@ fun initLogs() {
 
     BadLog.createTopic("Match Time", "s", Supplier { DriverStation.getInstance().matchTime })
 
-    SystemLogger.addNumber("Battery Voltage") { RobotController.getBatteryVoltage() }
+    SystemLogger.addNumber("Battery Voltage", "V") { RobotController.getBatteryVoltage() }
     SystemLogger.addString("Browned Out", "bool") {
         if (RobotController.isBrownedOut()) "1" else "0"
     }
