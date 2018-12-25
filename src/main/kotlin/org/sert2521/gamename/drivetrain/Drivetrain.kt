@@ -2,12 +2,8 @@ package org.sert2521.gamename.drivetrain
 
 import com.kauailabs.navx.frc.AHRS
 import edu.wpi.first.wpilibj.I2C
-import org.sert2521.gamename.ENCODER_TICKS_PER_REVOLUTION
-import org.sert2521.gamename.LEFT_FRONT_MOTOR
-import org.sert2521.gamename.LEFT_REAR_MOTOR
-import org.sert2521.gamename.RIGHT_FRONT_MOTOR
-import org.sert2521.gamename.RIGHT_REAR_MOTOR
-import org.sert2521.gamename.WHEEL_DIAMETER
+import org.sert2521.gamename.Characteristics
+import org.sert2521.gamename.Talons
 import org.sert2521.gamename.util.Logger
 import org.sert2521.gamename.util.Telemetry
 import org.sert2521.gamename.util.applyDeadband
@@ -20,7 +16,7 @@ import kotlin.math.max
  * The robot's drive system.
  */
 object Drivetrain : DaemonSubsystem("Drivetrain") {
-    val leftDrive = TalonSRX(LEFT_FRONT_MOTOR, LEFT_REAR_MOTOR).config {
+    val leftDrive = TalonSRX(Talons.DRIVE_LEFT_FRONT, Talons.DRIVE_LEFT_REAR).config {
         feedbackCoefficient = feetToTicks(1.0)
         brakeMode()
         closedLoopRamp(0.1)
@@ -31,7 +27,7 @@ object Drivetrain : DaemonSubsystem("Drivetrain") {
         }
     }
 
-    val rightDrive = TalonSRX(RIGHT_FRONT_MOTOR, RIGHT_REAR_MOTOR).config {
+    val rightDrive = TalonSRX(Talons.DRIVE_RIGHT_FRONT, Talons.DRIVE_RIGHT_REAR).config {
         feedbackCoefficient = feetToTicks(1.0)
         brakeMode()
         inverted(true)
@@ -83,10 +79,10 @@ object Drivetrain : DaemonSubsystem("Drivetrain") {
     }
 
     fun ticksToFeet(ticks: Int) =
-            ticks.toDouble() / ENCODER_TICKS_PER_REVOLUTION * WHEEL_DIAMETER * Math.PI / 12.0
+        ticks.toDouble() / Characteristics.ENCODER_TICKS_PER_REVOLUTION * Characteristics.WHEEL_DIAMETER * Math.PI / 12.0
 
     fun feetToTicks(feet: Double) =
-            feet * 12.0 / Math.PI / WHEEL_DIAMETER * ENCODER_TICKS_PER_REVOLUTION
+        feet * 12.0 / Math.PI / Characteristics.WHEEL_DIAMETER * Characteristics.ENCODER_TICKS_PER_REVOLUTION
 
     fun drive(throttle: Double, turn: Double) {
         val scaledThrottle = applyDeadband(abs(throttle).coerceAtMost(1.0))
