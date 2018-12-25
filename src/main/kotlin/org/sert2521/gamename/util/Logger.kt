@@ -23,13 +23,106 @@ class Logger {
         subsystemName = subsystem.name
     }
 
-    fun addNumber(name: String, unit: String = BadLog.UNITLESS, body: () -> Number) =
+    /**
+     * Creates a named topic that logs a Double. Non-Double Numbers returned from the body will be
+     * converted to Double before being logged.
+     *
+     * @param name name of the topic
+     * @param unit unit to assign values in this topic
+     * @param body the function to be called to return the logged data
+     * @see BadLog.createTopicStr
+     */
+    fun addNumberTopic(name: String, unit: String = BadLog.UNITLESS, body: () -> Number) =
         BadLog.createTopic("$subsystemName/$name", unit, Supplier { body().toDouble() })
 
-    fun addString(name: String, unit: String = BadLog.UNITLESS, body: () -> String) =
-            BadLog.createTopicStr("$subsystemName/$name", unit, Supplier { body() })
+    /**
+     * Creates a named topic that logs a Double. Non-Double Numbers returned from the body will be
+     * converted to Double before being logged.
+     *
+     * @param name name of the topic
+     * @param unit unit to assign values in this topic
+     * @param body the function to be called to return the logged data
+     * @param attrs array of topic attributes
+     * @see BadLog.createTopicStr
+     */
+    fun addNumberTopic(
+        name: String,
+        unit: String = BadLog.UNITLESS,
+        body: () -> Number,
+        vararg attrs: String
+    ) = BadLog.createTopic("$subsystemName/$name", unit, Supplier { body().toDouble() }, *attrs)
 
-    fun addValue(name: String, value: String) = BadLog.createValue("$subsystemName/$name", value)
+    /**
+     * Creates a named topic that logs a String. Non-String values returned from the body will be
+     * converted to String before being logged.
+     *
+     * @param name name of the topic
+     * @param unit unit to assign values in this topic
+     * @param body the function to be called to return the logged data
+     * @see BadLog.createTopicStr
+     */
+    fun addTopic(name: String, unit: String = BadLog.UNITLESS, body: () -> Any) =
+        BadLog.createTopicStr("$subsystemName/$name", unit, Supplier { body().toString() })
+
+    /**
+     * Creates a named topic that logs a String. Non-String values returned from the body will be
+     * converted to String before being logged.
+     *
+     * @param name name of the topic
+     * @param unit unit to assign values in this topic
+     * @param body the function to be called to return the logged data
+     * @param attrs array of topic attributes
+     * @see BadLog.createTopicStr
+     */
+    fun addTopic(
+        name: String,
+        unit: String = BadLog.UNITLESS,
+        body: () -> Any,
+        vararg attrs: String
+    ) = BadLog.createTopicStr(
+        "$subsystemName/$name",
+        unit,
+        Supplier { body().toString() },
+        *attrs
+    )
+
+    /**
+     * Creates a named value with a single value.
+     *
+     * @param name name of the value
+     * @param value content to add
+     * @see BadLog.createValue
+     */
+    fun addValue(name: String, value: Any) =
+        BadLog.createValue("$subsystemName/$name", value.toString())
+
+    /**
+     * Creates a subscriber with the given name.
+     *
+     * @param name name of the topic
+     * @param unit unit to assign values in this topic
+     * @param inferMode method to use if data has not been published
+     * @param attrs array of topic attributes
+     * @see BadLog.createTopicSubscriber
+     * @see publish
+     */
+    fun addSubscriber(
+        name: String,
+        unit: String = BadLog.UNITLESS,
+        inferMode: DataInferMode = DataInferMode.DEFAULT,
+        vararg attrs: String
+    ) = BadLog.createTopicSubscriber("$subsystemName/$name", unit, inferMode, *attrs)
+
+    /**
+     * Publishes a value to the subscriber with the given name.
+     *
+     * @param name name of the topic
+     * @param value new value to assign the topic
+     * @see BadLog.publish
+     * @see addSubscriber
+     */
+    fun publish(name: String, value: Any) =
+        BadLog.publish("$subsystemName/$name", value.toString())
 }
 
 val SystemLogger = Logger("System")
@@ -53,11 +146,11 @@ fun initLogs() {
 
     BadLog.createTopic("Match Time", "s", Supplier { DriverStation.getInstance().matchTime })
 
-    SystemLogger.addNumber("Battery Voltage", "V") { RobotController.getBatteryVoltage() }
-    SystemLogger.addString("Browned Out", "bool") {
+    SystemLogger.addNumberTopic("Battery Voltage", "V") { RobotController.getBatteryVoltage() }
+    SystemLogger.addTopic("Browned Out", "bool") {
         if (RobotController.isBrownedOut()) "1" else "0"
     }
-    SystemLogger.addString("FPGA Active", "bool") {
+    SystemLogger.addTopic("FPGA Active", "bool") {
         if (RobotController.isSysActive()) "1" else "0"
     }
 

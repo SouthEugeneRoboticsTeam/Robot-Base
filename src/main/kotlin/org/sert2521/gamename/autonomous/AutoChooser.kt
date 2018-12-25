@@ -5,9 +5,11 @@ import edu.wpi.first.networktables.EntryNotification
 import edu.wpi.first.networktables.NetworkTableInstance
 import edu.wpi.first.wpilibj.DriverStation
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
+import org.sert2521.gamename.autonomous.AutoMode.CROSS_BASELINE
 import org.sert2521.gamename.autonomous.AutoMode.Constraint
 import org.sert2521.gamename.autonomous.AutoMode.Objective
 import org.sert2521.gamename.autonomous.AutoMode.Start
+import org.sert2521.gamename.util.Logger
 import org.sertain.util.SendableChooser
 import org.team2471.frc.lib.motion_profiling.Autonomi
 import org.team2471.frc.lib.util.measureTimeFPGA
@@ -55,11 +57,17 @@ enum class AutoMode {
 
 object AutoChooser {
     private val cacheFile = File("/home/lvuser/autonomi.json")
+    private val logger = Logger("Autonomous")
 
     init {
         SmartDashboard.putData("Auto Start Position", AutoMode.startChooser)
         SmartDashboard.putData("Auto Objective", AutoMode.objectiveChooser)
         SmartDashboard.putData("Auto Constraint", AutoMode.constraintChooser)
+
+        logger.addSubscriber("Auto Start Position")
+        logger.addSubscriber("Auto Objective")
+        logger.addSubscriber("Auto Constraint")
+        logger.addSubscriber("Calculated Auto Mode")
 
         try {
             autonomi = Autonomi.fromJsonString(cacheFile.readText())
@@ -99,11 +107,31 @@ object AutoChooser {
                 .addListener(handler, flags)
     }
 
+    private fun calculateAuto() = when (AutoMode.start) {
+        Start.LEFT -> if (AutoMode.constraint == Constraint.NO_FAR_LANE) {
+            AutoMode.CROSS_BASELINE
+        } else {
+            AutoMode.CROSS_BASELINE
+        }
+        Start.MIDDLE -> if (AutoMode.objective == Objective.BASELINE) {
+            AutoMode.CROSS_BASELINE
+        } else {
+            AutoMode.CROSS_BASELINE
+        }
+        Start.RIGHT -> if (AutoMode.constraint == Constraint.NONE) {
+            AutoMode.CROSS_BASELINE
+        } else {
+            CROSS_BASELINE
+        }
+    }
+
     suspend fun runAuto() {
-        when (AutoMode.start) {
-            Start.LEFT -> if (AutoMode.constraint == Constraint.NONE) testStraightAuto()
-            Start.MIDDLE -> if (AutoMode.objective == Objective.BASELINE) testStraightAuto()
-            Start.RIGHT -> if (AutoMode.constraint == Constraint.NO_FAR_LANE) testStraightAuto()
+        val auto = calculateAuto()
+
+        logger.publish("Calculated Auto Mode", auto.name)
+
+        when (auto) {
+            CROSS_BASELINE -> testStraightAuto()
         }
     }
 }

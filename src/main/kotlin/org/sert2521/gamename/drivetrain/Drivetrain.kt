@@ -65,9 +65,9 @@ object Drivetrain : DaemonSubsystem("Drivetrain") {
     init {
         telemetry.add("Gyro") { ahrs.angle }
 
-        logger.addNumber("Angle", "deg") { ahrs.angle }
-        logger.addNumber("Left Output") { leftDrive.output }
-        logger.addNumber("Right Output") { rightDrive.output }
+        logger.addNumberTopic("Angle", "deg") { ahrs.angle }
+        logger.addNumberTopic("Left Output") { leftDrive.output }
+        logger.addNumberTopic("Right Output") { rightDrive.output }
 
         zeroEncoders()
         zeroGyro()
