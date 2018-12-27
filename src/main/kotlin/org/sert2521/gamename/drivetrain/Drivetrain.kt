@@ -6,9 +6,9 @@ import org.sert2521.gamename.Characteristics
 import org.sert2521.gamename.Talons
 import org.sert2521.gamename.util.Logger
 import org.sert2521.gamename.util.Telemetry
-import org.sert2521.gamename.util.applyDeadband
 import org.team2471.frc.lib.actuators.TalonSRX
 import org.team2471.frc.lib.framework.DaemonSubsystem
+import org.team2471.frc.lib.math.deadband
 import kotlin.math.abs
 import kotlin.math.max
 
@@ -85,8 +85,8 @@ object Drivetrain : DaemonSubsystem("Drivetrain") {
         feet * 12.0 / Math.PI / Characteristics.WHEEL_DIAMETER * Characteristics.ENCODER_TICKS_PER_REVOLUTION
 
     fun drive(throttle: Double, turn: Double) {
-        val scaledThrottle = applyDeadband(abs(throttle).coerceAtMost(1.0))
-        val scaledTurn = applyDeadband(abs(throttle).coerceAtMost(1.0))
+        val scaledThrottle = abs(throttle).coerceAtMost(1.0).deadband(0.02)
+        val scaledTurn = abs(throttle).coerceAtMost(1.0).deadband(0.02)
 
         val squaredThrottle = Math.copySign(scaledThrottle * scaledThrottle, throttle)
         val squaredTurn = Math.copySign(scaledTurn * scaledTurn, turn)
