@@ -84,7 +84,7 @@ jar {
     from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
     manifest {
         attributes(
-                "Main-Class": "org.sert2521.bunnybots.MainKt"
+                "Main-Class": "org.sert2521.gamename.MainKt"
         )
     }
 }
