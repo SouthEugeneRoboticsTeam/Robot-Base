@@ -4,7 +4,6 @@ import edu.wpi.first.networktables.EntryListenerFlags
 import edu.wpi.first.networktables.NetworkTableInstance
 
 object Vision {
-    var alive: Boolean? = false
     var found: Boolean? = false
     var time: Long? = 0
     var xOffset: Double? = null
@@ -19,7 +18,6 @@ object Vision {
 
         visionTable.addEntryListener({ _, key, _, value, _ ->
             when (key) {
-                "alive" -> alive = value.boolean
                 "found" -> found = value.boolean
                 "time" -> time = value.double.toLong()
                 "xOffset" -> xOffset = value.double

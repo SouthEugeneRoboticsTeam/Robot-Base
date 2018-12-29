@@ -47,34 +47,3 @@ class Telemetry {
 }
 
 val GlobalTelemetry = Telemetry("Global")
-
-fun logBuildInfo() {
-    println("\n-------------------- BUILD INFO --------------------")
-
-    "branch.txt".asResource {
-        println("Branch: $it")
-        GlobalTelemetry.put("Branch", it)
-    }
-
-    "commit.txt".asResource {
-        println("Commit: $it")
-        GlobalTelemetry.put("Commit", it)
-    }
-
-    "changes.txt".asResource {
-        println("Changes: [$it]")
-        GlobalTelemetry.put("Changes", it)
-    }
-
-    "buildtime.txt".asResource {
-        println("Build Time: $it")
-        GlobalTelemetry.put("Build Time", it)
-    }
-
-    println("----------------------------------------------------\n")
-}
-
-fun String.asResource(body: (String) -> Unit) {
-    val content = this.javaClass::class.java.getResource("/$this").readText()
-    body(content)
-}

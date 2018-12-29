@@ -10,7 +10,7 @@ import java.util.Date
 import java.util.Locale
 import java.util.function.Supplier
 
-private val logger = BadLog.init("/home/lvuser/logs/${System.currentTimeMillis()}.bag")!!
+val logger = BadLog.init("/home/lvuser/logs/${System.currentTimeMillis()}.bag")!!
 
 class Logger {
     private val subsystemName: String
@@ -157,4 +157,39 @@ fun initLogs() {
     BadLog.createTopicSubscriber("Time", "s", DataInferMode.DEFAULT, "hide", "delta", "xaxis")
 
     logger.finishInitialization()
+}
+
+fun logBuildInfo() {
+    println("\n-------------------- BUILD INFO --------------------")
+
+    "branch.txt".asResource {
+        println("Branch: $it")
+        GlobalTelemetry.put("Branch", it)
+        BadLog.createValue("Branch", it)
+    }
+
+    "commit.txt".asResource {
+        println("Commit: $it")
+        GlobalTelemetry.put("Commit", it)
+        BadLog.createValue("Commit", it)
+    }
+
+    "changes.txt".asResource {
+        println("Changes: [$it]")
+        GlobalTelemetry.put("Changes", it)
+        BadLog.createValue("Changes", it)
+    }
+
+    "buildtime.txt".asResource {
+        println("Build Time: $it")
+        GlobalTelemetry.put("Build Time", it)
+        BadLog.createValue("Build Time", it)
+    }
+
+    println("----------------------------------------------------\n")
+}
+
+fun String.asResource(body: (String) -> Unit) {
+    val content = this.javaClass::class.java.getResource("/$this").readText()
+    body(content)
 }

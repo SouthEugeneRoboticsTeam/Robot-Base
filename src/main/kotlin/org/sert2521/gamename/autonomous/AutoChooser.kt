@@ -1,5 +1,6 @@
 package org.sert2521.gamename.autonomous
 
+import badlog.lib.DataInferMode
 import edu.wpi.first.networktables.EntryListenerFlags
 import edu.wpi.first.networktables.EntryNotification
 import edu.wpi.first.networktables.NetworkTableInstance
@@ -64,10 +65,10 @@ object AutoChooser {
         SmartDashboard.putData("Auto Objective", AutoMode.objectiveChooser)
         SmartDashboard.putData("Auto Constraint", AutoMode.constraintChooser)
 
-        logger.addSubscriber("Auto Start Position")
-        logger.addSubscriber("Auto Objective")
-        logger.addSubscriber("Auto Constraint")
-        logger.addSubscriber("Calculated Auto Mode")
+        logger.addSubscriber("Auto Start Position", inferMode = DataInferMode.LAST)
+        logger.addSubscriber("Auto Objective", inferMode = DataInferMode.LAST)
+        logger.addSubscriber("Auto Constraint", inferMode = DataInferMode.LAST)
+        logger.addSubscriber("Calculated Auto Mode", inferMode = DataInferMode.LAST)
 
         try {
             autonomi = Autonomi.fromJsonString(cacheFile.readText())

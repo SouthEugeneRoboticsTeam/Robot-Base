@@ -10,6 +10,7 @@ import org.sert2521.gamename.util.initLogs
 import org.sert2521.gamename.util.initPreferences
 import org.sert2521.gamename.util.log
 import org.sert2521.gamename.util.logBuildInfo
+import org.sert2521.gamename.util.logger
 import org.team2471.frc.lib.coroutines.periodic
 import org.team2471.frc.lib.coroutines.suspendUntil
 import org.team2471.frc.lib.framework.RobotProgram
@@ -18,10 +19,12 @@ import org.team2471.frc.lib.framework.runRobotProgram
 
 object Robot : RobotProgram {
     init {
+        logger
+
         AutoChooser
         Vision
 
-        Drivetrain
+//        Drivetrain
 
         initControls()
         initPreferences()
