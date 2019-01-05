@@ -2,7 +2,8 @@
 .gradle
 .idea/*
 !.idea/codeStyles
-**.iml
+*.iml
+*.bag
 build
 local.properties
 src/main/resources/branch.txt
