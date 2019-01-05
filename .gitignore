@@ -4,6 +4,7 @@
 !.idea/codeStyles
 **.iml
 build
+local.properties
 src/main/resources/branch.txt
 src/main/resources/buildtime.txt
 src/main/resources/changes.txt
