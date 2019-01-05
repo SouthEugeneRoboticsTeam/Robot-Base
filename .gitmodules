@@ -1,0 +1,4 @@
+[submodule "meanlib"]
+    path = meanlib
+    url = https://github.com/SouthEugeneRoboticsTeam/meanlib.git
+    branch = master

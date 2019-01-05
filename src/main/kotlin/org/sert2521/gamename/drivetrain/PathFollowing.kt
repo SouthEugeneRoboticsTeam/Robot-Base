@@ -111,7 +111,7 @@ suspend fun Drivetrain.driveAlongPath(path: Path2D, extraTime: Double = 0.0) {
             prevRightDistance = rightDistance
 
             if (finished) {
-                exitPeriodic()
+                this.stop()
             }
         }
     } finally {

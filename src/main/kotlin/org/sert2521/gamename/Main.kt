@@ -1,5 +1,6 @@
 package org.sert2521.gamename
 
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard
 import kotlinx.coroutines.launch
 import org.sert2521.gamename.autonomous.AutoChooser
 import org.sert2521.gamename.drivetrain.Drivetrain
@@ -30,6 +31,8 @@ object Robot : RobotProgram {
         initPreferences()
         logBuildInfo()
         initLogs()
+
+        println("Hello from my robot!")
     }
 
     override suspend fun enable() {
@@ -51,10 +54,13 @@ object Robot : RobotProgram {
 
     override suspend fun teleop() {
         println("Entering teleop...")
+        Shuffleboard.selectTab("Driver")
     }
 
     override suspend fun autonomous() {
         println("Entering autonomous...")
+        Shuffleboard.selectTab("Autonomous")
+
         AutoChooser.runAuto()
     }
 }

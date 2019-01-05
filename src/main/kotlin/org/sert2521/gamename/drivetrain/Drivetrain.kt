@@ -7,7 +7,7 @@ import org.sert2521.gamename.Talons
 import org.sert2521.gamename.util.Logger
 import org.sert2521.gamename.util.Telemetry
 import org.team2471.frc.lib.actuators.TalonSRX
-import org.team2471.frc.lib.framework.DaemonSubsystem
+import org.team2471.frc.lib.framework.Subsystem
 import org.team2471.frc.lib.math.deadband
 import kotlin.math.abs
 import kotlin.math.max
@@ -15,7 +15,7 @@ import kotlin.math.max
 /**
  * The robot's drive system.
  */
-object Drivetrain : DaemonSubsystem("Drivetrain") {
+object Drivetrain : Subsystem("Drivetrain", { teleopDrive() }) {
     val leftDrive = TalonSRX(Talons.DRIVE_LEFT_FRONT, Talons.DRIVE_LEFT_REAR).config {
         feedbackCoefficient = feetToTicks(1.0)
         brakeMode()
@@ -152,6 +152,4 @@ object Drivetrain : DaemonSubsystem("Drivetrain") {
         leftDrive.stop()
         rightDrive.stop()
     }
-
-    override suspend fun default() = teleopDrive()
 }

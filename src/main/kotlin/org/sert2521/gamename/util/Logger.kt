@@ -5,12 +5,14 @@ import badlog.lib.DataInferMode
 import edu.wpi.first.wpilibj.DriverStation
 import edu.wpi.first.wpilibj.RobotController
 import org.team2471.frc.lib.framework.Subsystem
+import org.team2471.frc.lib.util.Environment
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import java.util.function.Supplier
 
-val logger = BadLog.init("/home/lvuser/logs/${System.currentTimeMillis()}.bag")!!
+private val pathPrefix = if (Environment.isReal) "/home/lvuser/logs" else "."
+val logger = BadLog.init("$pathPrefix/${System.currentTimeMillis()}.bag")!!
 
 class Logger {
     private val subsystemName: String
@@ -190,6 +192,6 @@ fun logBuildInfo() {
 }
 
 fun String.asResource(body: (String) -> Unit) {
-    val content = this.javaClass::class.java.getResource("/$this").readText()
-    body(content)
+    val content = this.javaClass::class.java.getResource("/$this")?.readText()
+    body(content ?: "")
 }
