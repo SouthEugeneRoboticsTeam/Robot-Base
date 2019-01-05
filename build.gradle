@@ -1,5 +1,3 @@
-import edu.wpi.first.gradlerio.frc.RoboRIO
-import edu.wpi.first.gradlerio.frc.FRCJavaArtifact
 import java.text.SimpleDateFormat
 
 plugins {
@@ -11,7 +9,7 @@ ext.kotlinVersion = "1.3.10"
 ext.ktlintVersion = "0.29.0"
 ext.gsonVersion = "2.8.5"
 ext.sertainVersion = "a2c505171b318836e0619b3c25dabae3a7857bf5"
-ext.badlogVersion = "b821f47284a8cf204ad7f590e8e8f1085c2ee8d6"
+ext.badlogVersion = "d3f791967f11888df925af0a32178b264fce42a6"
 
 check.dependsOn "ktlint"
 compileKotlin.dependsOn "versionTxt"
